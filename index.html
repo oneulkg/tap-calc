@@ -1,0 +1,39 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg"><title>탭 조건</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font:20px/1.4 system-ui,sans-serif;padding:14px}
+h1{font-size:28px;margin:4px 0 10px;color:#ffd400}label{display:block;font-size:18px;color:#bbb;margin:12px 0 4px}
+select,input{width:100%;font-size:24px;min-height:60px;background:#111;color:#fff;border:3px solid #ffd400;border-radius:10px;padding:8px}
+.card{background:#111;border:2px solid #444;border-radius:12px;padding:12px;margin:12px 0}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #333}.row:last-child{border:0}
+.big{font-size:34px;font-weight:800;color:#ffd400}.k{color:#ccc}
+button{font-size:22px;min-height:60px;width:49%;border-radius:10px;border:0;font-weight:700}
+#save{background:#ffd400;color:#000}#reset{background:#333;color:#fff}
+code{display:block;font-size:20px;background:#000;border:2px solid #0f0;color:#0f0;padding:10px;border-radius:8px;word-break:break-all}
+.warn{border-color:#f44;color:#fcc;font-size:17px}
+</style></head><body>
+<h1>탭 조건 계산기</h1>
+<div class="card warn">⚠ 일반 참고값이에요. <b>기계·공구 메이커 조건이 우선</b>이고, 처음엔 낮게 시작해서 확인하세요.</div>
+<label>탭 사이즈</label><select id="size"></select>
+<div class="card">
+<div class="row"><span class="k">피치</span><span class="big" id="pitch"></span></div>
+<div class="row"><span class="k">기리 (절삭탭)</span><span class="big" id="cutdrill"></span></div>
+<div class="row"><span class="k">기리 (롤탭)</span><span class="big" id="rolldrill"></span></div>
+</div>
+<label>소재</label><select id="mat"></select>
+<label>탭 종류</label><select id="type"></select>
+<div class="card"><div class="row"><span class="k">OSG 참고 Vc</span><span id="vcrange"></span></div><div id="mnote" style="color:#fc6;font-size:17px"></div><div id="dlabel" style="color:#ffd400;font-size:18px"></div></div>
+<div id="out">
+<label>절삭속도 Vc (m/min)</label><input id="vc" type="number" inputmode="decimal">
+<div class="card">
+<div class="row"><span class="k">회전수 S</span><span class="big" id="rpm"></span></div>
+<div class="row"><span class="k">이송 F (mm/min)</span><span class="big" id="feed"></span></div>
+<div class="row"><span class="k" id="src"></span></div>
+</div>
+<code id="g84"></code>
+<label>우리 공장 S (선택, 직접 입력)</label><input id="rpmIn" type="number" inputmode="numeric" placeholder="비우면 Vc로 계산">
+<p><button id="save">내 값 저장</button> <button id="reset">기본값</button></p><p id="msg" style="color:#0f0"></p>
+</div>
+<p style="font-size:15px;color:#999">기리: 절삭탭 표준표(보통나사) 또는 D−P(가는나사), 롤탭 D−P/2(근사). Vc: OSG A-Tap 카탈로그 범위. F = S × 피치.</p>
+<script src="data.js"></script><script src="app.js"></script></body></html>
